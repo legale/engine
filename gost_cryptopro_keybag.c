@@ -686,7 +686,8 @@ static int cryptopro_keybag_unwrap_update(void *vctx,
     }
 
     /* Magic at bytes [4:6] selects key length. */
-    if (payload[4] == 0x46 && payload[5] == 0xAA) {
+    if ((payload[4] == 0x46 && payload[5] == 0xAA)
+        || (payload[4] == 0x49 && payload[5] == 0x2E)) {
         is_512 = 0;
         algo_nid = NID_id_GostR3410_2012_256;
         raw_len = 32;
